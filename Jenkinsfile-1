@@ -25,6 +25,8 @@ pipeline {
     }
     stage('cleanup') {
       steps {
+        sh 'docker stop devops-web-project-server || true'
+        sh 'docker rm devops-web-project-server || true'
         sh 'docker system prune -a --volumes --force --filter "label=devops-web-project-server"'
       }
     }
